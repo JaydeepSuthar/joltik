@@ -20,6 +20,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 	});
 
 	if (!data) {
+		res.setHeader("Content-Type", "application/json");
+		res.setHeader("Accesss-Control-Allow-Origin", "*");
+		res.setHeader("Cache-Control", "s-maxage=1000, stale-while-revalidate");
+
 		return res.status(404).json({ msg: `Slug not Found`, data: {} });
 	}
 
